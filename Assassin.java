@@ -6,7 +6,7 @@ public class Assassin
   public int id;
   public String firstN;
   public String lastN;
-  public String target;
+  public Assassin target;
   
   public 
 }
