@@ -5,4 +5,5 @@ public class Assassin
 {
   public int id;
   public String firstN;
-uy5hx 
+  
+}
