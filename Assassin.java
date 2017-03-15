@@ -10,13 +10,15 @@ public class Assassin
   public String lastN;
   public Assassin target;
   public boolean alive;
+  public String email;
   
-  public Assassin(int i, String f, String l, Assassin t) {
+  public Assassin(int i, String f, String l, String e, Assassin t) {
 	  id = i;
 	  firstN = f;
 	  lastN = l;
 	  target = t;
 	  alive = true;
+	  email = e;
   }
   
   public String toString() {
@@ -44,6 +46,10 @@ public class Assassin
   
   public String getName() {
 	  return firstN + " " + lastN;
+  }
+  
+  public String getEmail() {
+	  return email;
   }
   
   public Assassin getTarget() {
