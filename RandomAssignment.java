@@ -3,13 +3,16 @@ public class RandomAssignment
 {
 	public static void main(String[] args)
 	{
-		ArrayList<Assassin> x = new ArrayList<>();
+		//what is the point of this - Derek Zhang
+		//ArrayList<Assassin> x = new ArrayList<>();
 	}
 	public static void randomize(ArrayList<Assassin> a)
 	{
+		
+		ArrayList <Integer> holder = new ArrayList<>();
 		for(int x = 0; x < a.size(); x++)
 		{
-			ArrayList <Integer> holder = new ArrayList<>();
+			
 			int randNum = (int)(Math.random()*a.size());
 			while(holder.contains(randNum) == true)
 			{
