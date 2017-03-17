@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 public class RandomAssignment 
 {
 	public static void main(String[] args)
@@ -25,4 +25,21 @@ public class RandomAssignment
 			a.set(x, temp);
 		}
 	}//end randomize
+public static void derekWazHere(ArrayList<Assassin> a) {
+if (a.size() < 2) {
+
+return;
+}
+Collections.shuffle(a);
+//Assassin curr = a.get(0);
+//curr.setTarget(a.get(1));
+//curr = a.get(1);
+//int i = 2;
+for (int i=0;i< a.size();i++) {
+if(i=a.size()-1)
+{
+a.get(i).setTarget(a.get(0));
+}
+a.get(i).setTarget(a.get(i+1));
+}
 }//end class
