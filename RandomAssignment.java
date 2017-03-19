@@ -25,21 +25,18 @@ public class RandomAssignment
 			a.set(x, temp);
 		}
 	}//end randomize
-public static void derekWazHere(ArrayList<Assassin> a) {
-if (a.size() < 2) {
-
-return;
-}
-Collections.shuffle(a);
-//Assassin curr = a.get(0);
-//curr.setTarget(a.get(1));
-//curr = a.get(1);
-//int i = 2;
-for (int i=0;i< a.size();i++) {
-if(i=a.size()-1)
-{
-a.get(i).setTarget(a.get(0));
-}
-a.get(i).setTarget(a.get(i+1));
-}
+	public static void derekWazHere(ArrayList<Assassin> a) {
+		
+		if (a.size() < 2) {
+			
+			return;
+		}
+		Collections.shuffle(a);
+		for (int i = 0; i < a.size() - 1; i++) {
+		
+			a.get(i).setTarget(a.get(i+1));
+		}
+		a.get(a.size() - 1).setTarget(a.get(0));
+	}
+	
 }//end class
