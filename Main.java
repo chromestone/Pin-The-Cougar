@@ -35,7 +35,7 @@ public class Main {
 		}
 		else {
 			
-			shTheyAreJustCougars = (ArrayList<Assassin>) ObjectIO.readObject("lol.txt", ArrayList.class);
+			shTheyAreJustCougars = (ArrayList<Assassin>) ObjectIO.readObject(SAVE_FILE_PATH, ArrayList.class);
 		}
 		
 		//example
