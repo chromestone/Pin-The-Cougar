@@ -1,11 +1,17 @@
+import java.io.Serializable;
+
 //Johnny Palatianos
 //Ryan Kushner
 //Joshua Zarb
 //03-09-2017
 
-public class Assassin
+public class Assassin implements Serializable
 {
-  public int id;
+	/**
+	 * Derek waz here. Btw this is just a generated id so that it can be saved to file
+	 */
+	private static final long serialVersionUID = -8691498881404609328L;
+public int id;
   public String firstN;
   public String lastN;
   public Assassin target;
@@ -22,7 +28,7 @@ public class Assassin
   }
   
   public String toString() {
-	  return "id = " + id + ". Name is " + firstN + " " + lastN + ". This kid is alive: " + alive + " target:" + target; 
+	  return "id =[" + id + "] Name is [" + firstN + "] [" + lastN + "] This kid is alive: [" + alive + "] target: [" + target + "]"; 
   }
   
   public void setTarget(Assassin x) {
@@ -54,5 +60,22 @@ public class Assassin
   
   public Assassin getTarget() {
 	  return target;
+  }
+  
+  /**
+   * You guys are the best programmers for neglecting this method. Poor .equals() method.
+   * I love you equals method. Who's a good boy (returns true). Yes you are, you're a good boy. *pats on the method HEADer*
+   */
+  @Override
+  public boolean equals(Object obj) {
+	  
+	  if (obj instanceof Assassin) {
+		  
+		  Assassin other = (Assassin) obj;
+		  
+		  return this.id == other.id;
+	  }
+	  
+	  return false;
   }
 }
