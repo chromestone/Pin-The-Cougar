@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
 	
 	static final String SAVE_FILE_PATH = "save.txt";
-	static final String INPUT_FILE_PATH = "input.txt";//first time input from CSV
+	static final String INPUT_FILE_PATH = "input.csv";//first time input from CSV
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
@@ -37,6 +37,21 @@ public class Main {
 			
 			shTheyAreJustCougars = (ArrayList<Assassin>) ObjectIO.readObject(SAVE_FILE_PATH, ArrayList.class);
 		}
+
+		//setting targets
+		for(int x = 0; x < shTheyAreJustCougars.size(); x++)
+		{
+			Assassin temp = shTheyAreJustCougars.get(x);
+			if(x == shTheyAreJustCougars.size() - 1)
+				temp.setTarget(shTheyAreJustCougars.get(0));
+			else
+				temp.setTarget(shTheyAreJustCougars.get(x + 1));
+		}
+		System.out.println(Assassin.toString(shTheyAreJustCougars.get(0)));
+//		for (Assassin a : shTheyAreJustCougars) {
+//			
+//			System.out.println(a);
+//		}
 		
 		//example
 		Scanner scanner = new Scanner(System.in);
@@ -47,4 +62,6 @@ public class Main {
 		//save to file
 		ObjectIO.writeObject(SAVE_FILE_PATH, shTheyAreJustCougars);
 	}
+	
+	
 }

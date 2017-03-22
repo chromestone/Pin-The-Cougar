@@ -33,7 +33,7 @@ public final class CSVReader {
 			
 			String aString = scanner.nextLine();
 			String[] values = aString.split(",");
-			aList.add(new Assassin(Integer.parseInt(values[3]), values[1], values[2], values[5], null));
+			aList.add(new Assassin(values[3], values[1], values[2], null, null, values[4]));
 		}
 		
 		scanner.close();

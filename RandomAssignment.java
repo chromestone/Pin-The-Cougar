@@ -3,16 +3,13 @@ public class RandomAssignment
 {
 	public static void main(String[] args)
 	{
-		//what is the point of this - Derek Zhang
-		//ArrayList<Assassin> x = new ArrayList<>();
+		ArrayList<Assassin> x = new ArrayList<>();
 	}
 	public static void randomize(ArrayList<Assassin> a)
 	{
-		
-		ArrayList <Integer> holder = new ArrayList<>();
 		for(int x = 0; x < a.size(); x++)
 		{
-			
+			ArrayList <Integer> holder = new ArrayList<>();
 			int randNum = (int)(Math.random()*a.size());
 			while(holder.contains(randNum) == true)
 			{
@@ -25,8 +22,9 @@ public class RandomAssignment
 			a.set(x, temp);
 		}
 	}//end randomize
-	public static void derekWazHere(ArrayList<Assassin> a) {
-		
+	
+public static void derekWazHere(ArrayList<Assassin> a) 
+{
 		if (a.size() < 2) {
 			
 			return;
@@ -38,5 +36,4 @@ public class RandomAssignment
 		}
 		a.get(a.size() - 1).setTarget(a.get(0));
 	}
-	
 }//end class
