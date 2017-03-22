@@ -3,7 +3,7 @@ public class RandomAssignment
 {
 	public static void main(String[] args)
 	{
-		ArrayList<Assassin> x = new ArrayList<>();
+		//ArrayList<Assassin> x = new ArrayList<>();
 	}
 	public static void randomize(ArrayList<Assassin> a)
 	{
@@ -23,15 +23,43 @@ public class RandomAssignment
 		}
 	}//end randomize
 	
-public static void derekWazHere(ArrayList<Assassin> a) 
-{
+	/**
+	 * A better randomizer and linker by Derek Zhang.
+	 * <br>
+	 * Uses collection's shuffle method and the calls doYourThingDoYourThing
+	 * which "links" the list by setting the targets of the assassins appropriately.
+	 * 
+	 * @param a the ArrayList to perform the operation on
+	 */
+	public static void derekWazHere(ArrayList<Assassin> a) 
+	{
 		if (a.size() < 2) {
-			
+
 			return;
 		}
 		Collections.shuffle(a);
-		for (int i = 0; i < a.size() - 1; i++) {
 		
+		doYourThingDoYourThing(a);
+	}
+	
+	/**
+	 * Links the assassins in the list.
+	 * <br>
+	 * For example:
+	 * given ["john", "mary", "susan"]
+	 * result is ["john targets mary", "mary targets susan", "susan targets john"]
+	 * 
+	 * @param a the ArrayList to perform the operation on
+	 */
+	public static void doYourThingDoYourThing(ArrayList<Assassin> a) {
+		
+		if (a.size() < 2) {
+
+			return;
+		}
+		
+		for (int i = 0; i < a.size() - 1; i++) {
+
 			a.get(i).setTarget(a.get(i+1));
 		}
 		a.get(a.size() - 1).setTarget(a.get(0));

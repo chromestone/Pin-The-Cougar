@@ -1,6 +1,5 @@
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 //Johnny Palatianos
 //Ryan Kushner
@@ -13,10 +12,14 @@ public class Assassin implements Serializable
 	 * Derek waz here. Btw this is just a generated id so that it can be saved to file
 	 */
 	private static final long serialVersionUID = -8691498881404609328L;
+	/**
+	 * WHY DID YOU GUYS MAKE THESE PUBLIC IF YOU MADE GETTER METHODS
+	 * "WTF"-Derek Zhang
+	 */
 	public String id;
   public String firstN;
   public String lastN;
-  public Assassin target;
+  transient public Assassin target;
   public boolean alive;
   public String email;
   public final String remind;
@@ -32,7 +35,18 @@ public class Assassin implements Serializable
   }
   
   public String toString() {
-	  return "id =[" + id + "] Name is [" + firstN + "] [" + lastN + "] This kid is alive: [" + alive + "] target: [" + "]"; 
+	  return "id =[" + id + "] Name is [" + firstN + "] [" + lastN + "] This kid is alive: [" + alive + "] target: [" + targetInfo() + "]"; 
+  }
+  
+  /**
+   * Use this to output target info, DO NOT INQUIRE TARGET'S TARGET
+   * that's very dangerous. #targetception
+   * 
+   * @return
+   */
+  private String targetInfo() {
+	  
+	  return "id =[" + target.id + "] Name is [" + target.firstN + "] [" + target.lastN + "]";
   }
   
   public void setTarget(Assassin x) {
@@ -83,13 +97,9 @@ public class Assassin implements Serializable
 	  return false;
   }
   
-  public static String toString(Assassin a) {
-	  return "id =[" + a.id + "] Name is [" + a.firstN + "] [" + a.lastN + "] This kid is alive: [" + a.alive + "] target: [" + a.target + "]"; 
-  }
-  
   public static void main(String[] args) {
 	
-	  System.out.println(new Assassin("313126", "John", "Pats", "313126@mcpsmd.net", null, ""));
+	  System.out.println(new Assassin("313126", "John", "Pats", "313126@mcpsmd.net", new Assassin("31126", "John", "Pats", "313126@mcpsmd.net", null, ""), ""));
 }
 
 }

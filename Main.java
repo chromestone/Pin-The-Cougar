@@ -7,6 +7,7 @@ public class Main {
 	static final String SAVE_FILE_PATH = "save.txt";
 	static final String INPUT_FILE_PATH = "input.csv";//first time input from CSV
 	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
 		/*
@@ -26,7 +27,7 @@ public class Main {
 			file = new File(INPUT_FILE_PATH);
 			if (!file.exists()) {
 				
-				System.out.println("You did something wrong!");
+				System.err.println("INPUT_FILE does not exist!");
 				return;
 			}
 			
@@ -36,6 +37,9 @@ public class Main {
 		else {
 			
 			shTheyAreJustCougars = (ArrayList<Assassin>) ObjectIO.readObject(SAVE_FILE_PATH, ArrayList.class);
+			//System.out.println(shTheyAreJustCougars);
+			RandomAssignment.doYourThingDoYourThing(shTheyAreJustCougars);
+			System.out.println(shTheyAreJustCougars);
 		}
 
 		//setting targets
@@ -47,7 +51,7 @@ public class Main {
 			else
 				temp.setTarget(shTheyAreJustCougars.get(x + 1));
 		}
-		System.out.println(Assassin.toString(shTheyAreJustCougars.get(0)));
+		System.out.println(shTheyAreJustCougars.get(0));
 //		for (Assassin a : shTheyAreJustCougars) {
 //			
 //			System.out.println(a);
