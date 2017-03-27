@@ -41,17 +41,17 @@ public class Main {
 			RandomAssignment.doYourThingDoYourThing(shTheyAreJustCougars);
 			System.out.println(shTheyAreJustCougars);
 		}
-
+		createEmail(shTheyAreJustCougars.get(0));
 		//setting targets
-		for(int x = 0; x < shTheyAreJustCougars.size(); x++)
-		{
-			Assassin temp = shTheyAreJustCougars.get(x);
-			if(x == shTheyAreJustCougars.size() - 1)
-				temp.setTarget(shTheyAreJustCougars.get(0));
-			else
-				temp.setTarget(shTheyAreJustCougars.get(x + 1));
-		}
-		System.out.println(shTheyAreJustCougars.get(0));
+//		for(int x = 0; x < shTheyAreJustCougars.size(); x++)
+//		{
+//			Assassin temp = shTheyAreJustCougars.get(x);
+//			if(x == shTheyAreJustCougars.size() - 1)
+//				temp.setTarget(shTheyAreJustCougars.get(0));
+//			else
+//				temp.setTarget(shTheyAreJustCougars.get(x + 1));
+//		}
+//		System.out.println(shTheyAreJustCougars.get(0));
 //		for (Assassin a : shTheyAreJustCougars) {
 //			
 //			System.out.println(a);
@@ -65,7 +65,31 @@ public class Main {
 		
 		//save to file
 		ObjectIO.writeObject(SAVE_FILE_PATH, shTheyAreJustCougars);
+		
 	}
 	
+	//added method for creating emails to send 
+	//added method for checking if an id belongs to a senior
+	
+	public static void createEmail(Assassin a)
+	{
+		Scanner find = null;
+		try
+		{
+			find = new Scanner(new File("emailTemplate.txt"));
+		}
+		catch(Exception e)
+		{
+			System.out.println("file not found");
+		}
+		
+		for(int x = 0; x < 16; x++)
+			System.out.println(find.nextLine());
+	}
+	
+	public static boolean seniorCheck()
+	{
+		return true;
+	}
 	
 }
