@@ -87,8 +87,23 @@ public class Main {
 			System.out.println(find.nextLine());
 	}
 	
-	public static boolean seniorCheck()
+	public boolean seniorCheck()
 	{
+		Scanner in= new Scanner(System.in);
+		try
+		{
+			in=new Scanner(new File("IDs.txt"));
+		}
+		catch(Exception e)
+		{
+			System.out.println("Cannot Find File");
+		}
+		while(in.hasNext())
+		{
+			String idt=in.nextLine();
+			if(idt.equals(this.getID())==false)
+				return false
+		}
 		return true;
 	}
 	
