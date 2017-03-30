@@ -39,23 +39,18 @@ public class Main {
 			shTheyAreJustCougars = (ArrayList<Assassin>) ObjectIO.readObject(SAVE_FILE_PATH, ArrayList.class);
 			//System.out.println(shTheyAreJustCougars);
 			RandomAssignment.doYourThingDoYourThing(shTheyAreJustCougars);
-			System.out.println(shTheyAreJustCougars);
 		}
-		createEmail(shTheyAreJustCougars.get(0));
-		//setting targets
-//		for(int x = 0; x < shTheyAreJustCougars.size(); x++)
-//		{
-//			Assassin temp = shTheyAreJustCougars.get(x);
-//			if(x == shTheyAreJustCougars.size() - 1)
-//				temp.setTarget(shTheyAreJustCougars.get(0));
-//			else
-//				temp.setTarget(shTheyAreJustCougars.get(x + 1));
-//		}
-//		System.out.println(shTheyAreJustCougars.get(0));
-//		for (Assassin a : shTheyAreJustCougars) {
-//			
-//			System.out.println(a);
-//		}
+		
+		//print emails
+		Scanner in= new Scanner(System.in);
+		for(Assassin a: shTheyAreJustCougars)
+		{
+			createEmail(a);
+			System.out.println("-------------------------------------------------------------------------------------------");
+			in.nextLine();
+		}
+		
+			
 		
 		//example
 		Scanner scanner = new Scanner(System.in);
@@ -69,8 +64,6 @@ public class Main {
 	}
 	
 	//added method for creating emails to send 
-	//added method for checking if an id belongs to a senior
-	
 	public static void createEmail(Assassin a)
 	{
 		Scanner find = null;
@@ -83,28 +76,31 @@ public class Main {
 			System.out.println("file not found");
 		}
 		
-		for(int x = 0; x < 16; x++)
-			System.out.println(find.nextLine());
+		int spaceLoc = 0;
+		while(find.hasNext())
+		{
+			
+			String temp = find.nextLine();
+			if(temp.contains("_"))
+			{
+				if(spaceLoc %2 == 0)
+				{
+					temp = "Hello " + a.getName() + ",";
+				}
+				else
+				{
+					temp = "Your mission, if you choose to accept it, is to pin " + a.getTarget().getName() + ".";
+				}
+				spaceLoc++;
+			}
+				
+			System.out.println(temp);
+		}
+		System.out.println();
+			
 	}
 	
-	public boolean seniorCheck()
-	{
-		Scanner in= new Scanner(System.in);
-		try
-		{
-			in=new Scanner(new File("IDs.txt"));
-		}
-		catch(Exception e)
-		{
-			System.out.println("Cannot Find File");
-		}
-		while(in.hasNext())
-		{
-			String idt=in.nextLine();
-			if(idt.equals(this.getID())==false)
-				return false
-		}
-		return true;
-	}
+	//added method for checking if an id belongs to a senior
+	
 	
 }

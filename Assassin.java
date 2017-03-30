@@ -1,5 +1,7 @@
-
+import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 //Johnny Palatianos
 //Ryan Kushner
@@ -97,9 +99,35 @@ public class Assassin implements Serializable
 	  return false;
   }
   
-  public static void main(String[] args) {
-	
-	  System.out.println(new Assassin("313126", "John", "Pats", "313126@mcpsmd.net", new Assassin("31126", "John", "Pats", "313126@mcpsmd.net", null, ""), ""));
-}
+  public boolean seniorCheck()
+	{
+		Scanner in = new Scanner(System.in);
+		try
+		{
+			in = new Scanner(new File("IDs.txt"));
+		}
+		catch(Exception e)
+		{
+			System.out.println("Cannot Find File");
+		}
+		
+		ArrayList<String> id = new ArrayList<>();
+		while(in.hasNext())
+		{
+			String temp = in.nextLine();
+			id.add(temp.trim());
+			System.out.println(temp);
+		}
+		if(id.contains(this.getID()))
+			return true;
+		return false;
+	}
+  
+  public static void main(String[] args) 
+  {
+	  Assassin john = new Assassin("313126", "John", "Pats", "313126@mcpsmd.net", new Assassin("31126", "John", "Pats", "313126@mcpsmd.net", null, ""), "");
+	  System.out.println(john);
+	  System.out.println(john.seniorCheck());
+  }
 
 }
