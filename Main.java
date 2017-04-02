@@ -1,13 +1,19 @@
 import java.io.*;
 import java.util.*;
 
-
+/**
+ * 
+ * Derek was here.
+ *
+ */
 public class Main {
 	
 	static final String SAVE_FILE_PATH = "save.txt";
 	static final String INPUT_FILE_PATH = "input.csv";//first time input from CSV
 	
-	@SuppressWarnings("unchecked")
+	private static TLSMailSender sender = null;
+	
+	@SuppressWarnings({ "unchecked", "resource" })
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
 		/*
@@ -41,12 +47,21 @@ public class Main {
 			RandomAssignment.doYourThingDoYourThing(shTheyAreJustCougars);
 		}
 		
+		initSender();
+		
 		//print emails
 		Scanner in= new Scanner(System.in);
+		ArrayList<String> template = getTemplate();
+		//before, reading a file again and again for over 300 times was a crazy idea
+		//computers have a lot of RAM now days, use it lol - Derek Zhang
 		for(Assassin a: shTheyAreJustCougars)
 		{
-			createEmail(a);
-			System.out.println("-------------------------------------------------------------------------------------------");
+			createEmail(template, a);
+			for (int i = 0; i < 100; i++) {
+				
+				System.out.print("-");
+			}
+			System.out.println();
 			in.nextLine();
 		}
 		
@@ -54,18 +69,19 @@ public class Main {
 		
 		//example
 		Scanner scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
+		scanner.nextLine();
 		
 		//run code and stuff
 		
 		//save to file
 		ObjectIO.writeObject(SAVE_FILE_PATH, shTheyAreJustCougars);
 		
+		destroySender();
 	}
 	
-	//added method for creating emails to send 
-	public static void createEmail(Assassin a)
-	{
+	static ArrayList<String> getTemplate() {
+		
+		ArrayList<String> template = new ArrayList<String>();
 		Scanner find = null;
 		try
 		{
@@ -74,13 +90,31 @@ public class Main {
 		catch(Exception e)
 		{
 			System.out.println("file not found");
+			return template;
 		}
+		
+		while(find.hasNext())
+		{
+			
+			String temp = find.nextLine();
+			template.add(temp);
+		}
+		
+		find.close();
+		
+		return template;
+	}
+	
+	//added method for creating emails to send 
+	public static void createEmail(ArrayList<String> template, Assassin a)
+	{
+		Iterator<String> find = template.iterator();
 		
 		int spaceLoc = 0;
 		while(find.hasNext())
 		{
 			
-			String temp = find.nextLine();
+			String temp = find.next();
 			if(temp.contains("_"))
 			{
 				if(spaceLoc %2 == 0)
@@ -103,4 +137,23 @@ public class Main {
 	//added method for checking if an id belongs to a senior
 	
 	
+	
+	private static void initSender() {
+		
+		//sender = new TLSMailSender("", "");
+	}
+	
+	/**
+	 * Don't call this in any static field declaration - initialization
+	 */
+	public static TLSMailSender getSender() {
+		
+		return sender;
+	}
+	
+	private static void destroySender() {
+		
+		//sender.terminateSession();
+		sender = null;
+	}
 }

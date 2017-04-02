@@ -16,7 +16,7 @@ public class Assassin implements Serializable
 	private static final long serialVersionUID = -8691498881404609328L;
 	/**
 	 * WHY DID YOU GUYS MAKE THESE PUBLIC IF YOU MADE GETTER METHODS
-	 * "WTF"-Derek Zhang
+	 * "What the cougars"-Derek Zhang
 	 */
 	public String id;
   public String firstN;
@@ -99,35 +99,47 @@ public class Assassin implements Serializable
 	  return false;
   }
   
-  public boolean seniorCheck()
-	{
-		Scanner in = new Scanner(System.in);
-		try
-		{
-			in = new Scanner(new File("IDs.txt"));
-		}
-		catch(Exception e)
-		{
-			System.out.println("Cannot Find File");
-		}
-		
-		ArrayList<String> id = new ArrayList<>();
-		while(in.hasNext())
-		{
-			String temp = in.nextLine();
-			id.add(temp.trim());
-			System.out.println(temp);
-		}
+  @SuppressWarnings("resource")
+  public static ArrayList<String> seniorList()
+  {
+	  Scanner in = new Scanner(System.in);
+	  ArrayList<String> id = new ArrayList<>();
+	  try
+	  {
+		  in = new Scanner(new File("IDs.txt"));
+	  }
+	  catch(Exception e)
+	  {
+		  System.out.println("Cannot Find File");
+		  return id;
+	  }
+
+	  while(in.hasNext())
+	  {
+		  String temp = in.nextLine();
+		  id.add(temp.trim());
+		  System.out.println(temp);
+	  }
+
+	  in.close();
+
+	  return id;
+	  /*
 		if(id.contains(this.getID()))
 			return true;
 		return false;
-	}
+	   */
+  }
   
   public static void main(String[] args) 
   {
 	  Assassin john = new Assassin("313126", "John", "Pats", "313126@mcpsmd.net", new Assassin("31126", "John", "Pats", "313126@mcpsmd.net", null, ""), "");
 	  System.out.println(john);
-	  System.out.println(john.seniorCheck());
+	  //such bad style of programming. why read the file everytime you need to check
+	  //when you can keep the List and check there. Plus, it should've been a static method
+	  //and doesn't really belong in this class, but ok. I changed stuff - Derek Zhang
+	  ArrayList<String> ids = Assassin.seniorList();
+	  System.out.println(ids.contains(john));
   }
 
 }
